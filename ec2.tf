@@ -15,16 +15,16 @@ resource "aws_instance" "vm1" {
   # ================== initial docker setup for all devices ==================
 
   provisioner "file" {
-    source      = "docker.sh"
-    destination = "/home/ubuntu/docker.sh"
+    source      = "docker_ansible.sh"
+    destination = "/home/ubuntu/docker_ansible.sh"
   }
 
   # ================== Mod permissions and run docker.sh ==================
 
     provisioner "remote-exec" {
     inline = [
-      "sudo chmod a+x /home/ubuntu/docker.sh",
-      "sudo bash /home/ubuntu/docker.sh",
+      "sudo chmod a+x /home/ubuntu/docker_ansible.sh",
+      "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
   }
 
