@@ -19,6 +19,17 @@ resource "aws_instance" "vm1" {
     destination = "/home/ubuntu/docker.sh"
   }
 
+  # ================== Mod permissions and run docker.sh ==================
+
+    provisioner "remote-exec" {
+    inline = [
+      "sudo chmod a+x /home/ubuntu/docker.sh",
+      "sudo bash /home/ubuntu/docker.sh",
+    ]
+  }
+
+  # ================== SSH connection for file/remote exec actions ==================
+
     connection {
     type        = "ssh"
     host        = self.public_ip
