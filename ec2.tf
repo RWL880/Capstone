@@ -23,7 +23,7 @@ resource "aws_instance" "vm1" {
 
   provisioner "file" {
     source      = "ansiblefiles/"
-    destination = "/home/ubuntu/"
+    destination = "/home/ubuntu/ansiblefiles/"
   }
 
   # ================== Mod permissions and run docker/ansible install on all devices ==================
@@ -31,7 +31,7 @@ resource "aws_instance" "vm1" {
     provisioner "remote-exec" {
     inline = [
       "sudo chmod a+x /home/ubuntu/docker_ansible.sh",
-      "sudo chmod a+x /home/ubuntu/ansiblefiles/",
+      "sudo chmod a+x /home/ubuntu/ansiblefiles/*",
       "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
   }
