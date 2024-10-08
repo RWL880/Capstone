@@ -18,6 +18,14 @@ resource "aws_instance" "vm1" {
     source      = "docker.sh"
     destination = "/home/ubuntu/docker.sh"
   }
+
+    connection {
+    type        = "ssh"
+    host        = self.public_ip
+    user        = "ubuntu"
+    private_key = var.privatekey
+    timeout     = "3m"
+  }
 }
 
 output "PublicIpAddress" {
