@@ -23,7 +23,7 @@ resource "aws_instance" "vm1" {
 
   provisioner "file" {
     source      = "ansiblefiles/"
-    destination = "/home/ubuntu/ansiblefiles/"
+    destination = "/home/ubuntu/ansiblefiles"
   }
 
   # ================== Mod permissions and run docker/ansible install on all devices ==================
