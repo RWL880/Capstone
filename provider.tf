@@ -13,13 +13,23 @@ provider "aws" {
   region     = "us-east-1"
 }
 
+# terraform {
+#   cloud {
+
+#     organization = "Rob-NWG-IAC"
+
+#     workspaces {
+#       name = "Capstone"
+#     }
+#   }
+# }
+
 terraform {
   cloud {
-
     organization = "Rob-NWG-IAC"
-
+    hostname     = "app.terraform.io"
     workspaces {
-      name = "Test-1"
+      tags = ["capstone"]
     }
   }
 }
