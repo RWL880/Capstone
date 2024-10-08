@@ -12,18 +12,26 @@ resource "aws_instance" "vm1" {
   }
   associate_public_ip_address = true
 
-  # ================== initial docker setup for all devices ==================
+  # ================== Copy docker/ansible install file on all devices ==================
 
   provisioner "file" {
     source      = "docker_ansible.sh"
     destination = "/home/ubuntu/docker_ansible.sh"
   }
 
-  # ================== Mod permissions and run docker.sh ==================
+  # ================== Copy docker/ansible install file on all devices ==================
+
+  provisioner "file" {
+    source      = "ansiblefiles/"
+    destination = "/home/ubuntu/"
+  }
+
+  # ================== Mod permissions and run docker/ansible install on all devices ==================
 
     provisioner "remote-exec" {
     inline = [
       "sudo chmod a+x /home/ubuntu/docker_ansible.sh",
+      "sudo chmod a+x /home/ubuntu/ansiblefiles/",
       "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
   }
