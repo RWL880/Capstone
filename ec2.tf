@@ -2,7 +2,7 @@
 
 resource "aws_instance" "vm1" {
   count                  = 3
-  ami                    = "ami-0583d8c7a9c35822c"
+  ami                    = "ami-0866a3c8686eaeeba"
   instance_type          = "t2.medium"
   key_name               = aws_key_pair.nkp.key_name
   vpc_security_group_ids = [aws_security_group.sg1.id]
@@ -11,11 +11,15 @@ resource "aws_instance" "vm1" {
     "Name" = "Team-1-Capstone-${count.index}"
   }
   associate_public_ip_address = true
+
+  # ================== initial docker setup for all devices ==================
+
+  provisioner "file" {
+    source      = "docker.sh"
+    destination = "/home/ubuntu/docker.sh"
+  }
 }
 
 output "PublicIpAddress" {
   value = aws_instance.vm1.*.public_ip
 }
-
-
-
