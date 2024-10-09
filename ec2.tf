@@ -26,6 +26,13 @@ resource "aws_instance" "vm1" {
     destination = "/home/ubuntu/playbooks"
   }
 
+  # ================== Copy dockerfiles contents ==================
+
+  provisioner "file" {
+    source      = "dockerfiles"
+    destination = "/home/ubuntu/playbooks/dockerfiles"
+  }
+
   # ================== Mod permissions and run docker/ansible install on all devices ==================
 
     provisioner "remote-exec" {
@@ -33,6 +40,8 @@ resource "aws_instance" "vm1" {
       "sudo chmod a+x /home/ubuntu/docker_ansible.sh",
       "sudo mkdir /home/ubuntu/playbooks",
       "sudo chmod a+x /home/ubuntu/playbooks/*",
+      "sudo chmod a+x /home/ubuntu/playbooks/dockerfiles/*",
+      "sudo cp /home/ubuntu/playbooks/dockerfiles/index.php /home/ubuntu/php/index.php",
       "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
   }

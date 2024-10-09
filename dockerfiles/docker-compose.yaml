@@ -8,7 +8,7 @@ services:
     ports:
     - "9098:80"
     volumes:
-    - "/home/ubuntu/php:/var/www/html"
+    - "/home/ubuntu/playbooks/dockerfiles/php:/var/www/html"
     depends_on:
     - database
   database:
