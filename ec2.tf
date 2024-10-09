@@ -19,21 +19,23 @@ resource "aws_instance" "vm1" {
     destination = "/home/ubuntu/docker_ansible.sh"
   }
 
-  # ================== Copy docker/ansible install file on all devices ==================
-
-  provisioner "file" {
-    source      = "playbooks/"
-    destination = "/home/ubuntu/playbooks/"
-  }
 
   # ================== Mod permissions and run docker/ansible install on all devices ==================
 
     provisioner "remote-exec" {
     inline = [
       "sudo chmod a+x /home/ubuntu/docker_ansible.sh",
+      "sudo mkdir /home/ubuntu/playbooks",
       "sudo chmod a+x /home/ubuntu/playbooks/*",
       "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
+  }
+
+  # ================== Copy docker/ansible install file on all devices ==================
+
+  provisioner "file" {
+    source      = "playbooks/"
+    destination = "/home/ubuntu/playbooks/"
   }
 
   # ================== SSH connection for file/remote exec actions ==================
