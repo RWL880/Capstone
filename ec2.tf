@@ -41,6 +41,8 @@ resource "aws_instance" "vm1" {
       "sudo mkdir /home/ubuntu/playbooks",
       "sudo chmod a+x /home/ubuntu/playbooks/*",
       "sudo chmod a+x /home/ubuntu/playbooks/dockerfiles/*",
+      "sudo mkdir /home/ubuntu/php", 
+      "sudo chmod a+x /home/ubuntu/php",
       "sudo cp /home/ubuntu/playbooks/dockerfiles/index.php /home/ubuntu/php/index.php",
       "sudo bash /home/ubuntu/docker_ansible.sh",
     ]
