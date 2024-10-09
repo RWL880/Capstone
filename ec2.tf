@@ -34,7 +34,7 @@ resource "aws_instance" "vm1" {
   # ================== Copy docker/ansible install file on all devices ==================
 
   provisioner "file" {
-    source      = "playbooks/"
+    source      = "/playbooks/"
     destination = "/home/ubuntu/playbooks/"
   }
 
