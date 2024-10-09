@@ -35,7 +35,7 @@ resource "aws_instance" "vm1" {
 
   provisioner "file" {
     source      = "/playbooks/"
-    destination = "/home/ubuntu/playbooks/"
+    destination = "/home/ubuntu/playbooks"
   }
 
   # ================== SSH connection for file/remote exec actions ==================
