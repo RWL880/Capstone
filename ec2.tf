@@ -22,7 +22,7 @@ resource "aws_instance" "vm1" {
   # ================== Copy docker/ansible install file on all devices ==================
 
   provisioner "file" {
-    source      = "C:\\Users\\robwl\\Downloads\\terraform_1.9.6_windows_amd64\\capstone\\playbooks"
+    source      = "Capstone/playbooks"
     destination = "/home/ubuntu/playbooks"
   }
 
