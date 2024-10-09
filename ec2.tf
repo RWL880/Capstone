@@ -23,7 +23,7 @@ resource "aws_instance" "vm1" {
 
   provisioner "file" {
     source      = "playbooks/"
-    destination = "/home/ubuntu/playbooks"
+    destination = "/home/ubuntu/playbooks/"
   }
 
   # ================== Mod permissions and run docker/ansible install on all devices ==================
